@@ -1,0 +1,60 @@
+/* if you want to apply this in another thing then you have to take the css in wright format 
+from (.box) you can only set the box location not the box
+starting from property you can copy the code
+remember mantion the box order as you need */
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #0e2136;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    background: #142d4a;
+    height: 200px;
+    aspect-ratio: 1/1;
+    border-radius: 10px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@property --deg{
+    syntax: '<angle>';
+    inherits: true;
+    initial-value: 0deg;
+
+}
+
+.box::before,
+.box::after {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: conic-gradient(from var(--deg) at center,
+            #00c3ff,
+            #7444a5,
+            #6300c6,
+            #009dcd);
+    border-radius: inherit;
+    z-index: -2;
+    padding: 2px;
+    animation: autoRotate 2s linear infinite;
+}
+
+.box::after {
+    /* z-index: 1; */
+    filter: blur(25px);
+}
+
+@keyframes autoRotate {
+    to {
+        --deg: 360deg;
+    }
+}
